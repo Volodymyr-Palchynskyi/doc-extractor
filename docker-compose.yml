@@ -2,11 +2,21 @@ services:
   backend:
     build: ./backend
     env_file:
-      # Optional so CI and fresh clones can build and boot; without a key the API answers 503.
+      # Optional so CI and fresh clones can build and boot. Without GEMINI_API_KEY the API runs in demo mode
+      # (recorded model output for the bundled samples); with a key it calls the model.
       - path: ./backend/.env
         required: false
-    # Published on loopback only. Put a reverse proxy in front before exposing it: the rate limiter
+    # Published on loopback only. Behind a reverse proxy (the frontend service below is one) the rate limiter
     # trusts X-Forwarded-For, which is only safe when nothing but the proxy can reach this port.
     ports:
       - "127.0.0.1:8000:8000"
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "${FRONTEND_PORT:-8082}:80"
+    depends_on:
+      backend:
+        condition: service_healthy
     restart: unless-stopped
