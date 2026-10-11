@@ -1,0 +1,114 @@
+<section class="summary" [class.ok]="store.errorCount() === 0" [class.bad]="store.errorCount() > 0" aria-live="polite">
+  <div class="head">
+    @if (store.errorCount() > 0) {
+      <strong>Needs review</strong>
+      <span>
+        {{ store.errorCount() }} {{ store.errorCount() === 1 ? 'problem' : 'problems' }}@if (store.warningCount() > 0) {, {{ store.warningCount() }}
+          {{ store.warningCount() === 1 ? 'note' : 'notes' }}}
+      </span>
+    } @else {
+      <strong>Looks consistent</strong>
+      <span>The arithmetic adds up@if (store.edited()) { with your edits}.</span>
+    }
+    @if (store.checking()) {
+      <span class="muted">Re-checking...</span>
+    }
+  </div>
+  @if (store.checkError(); as message) {
+    <p class="check-error" role="alert">{{ message }}</p>
+  }
+  @if (store.issues().length) {
+    <ul class="issues">
+      @for (issue of store.issues(); track $index) {
+        <li>
+          <button type="button" class="issue" [class]="'issue ' + issue.severity" (click)="show(issue)">
+            <span class="where">{{ issue.field }}</span>
+            <span>{{ issue.message }}</span>
+          </button>
+        </li>
+      }
+    </ul>
+  }
+  <p class="muted note">
+    These checks verify arithmetic and consistency only. They cannot tell whether a value matches the document, so
+    compare against the page on the left.
+  </p>
+</section>
+
+<section class="block">
+  <h3>Parties</h3>
+  <div class="two">
+    <div class="stack">
+      <app-field key="vendor.name" label="Vendor" [value]="value('vendor.name')" [issues]="issuesFor('vendor.name')" [changed]="isChanged('vendor.name')" (valueChange)="store.setScalar('vendor.name', $event)" />
+      <app-field key="vendor.address" label="Vendor address" [value]="value('vendor.address')" [changed]="isChanged('vendor.address')" (valueChange)="store.setScalar('vendor.address', $event)" />
+      <app-field key="vendor.tax_id" label="Vendor tax ID" [value]="value('vendor.tax_id')" [changed]="isChanged('vendor.tax_id')" (valueChange)="store.setScalar('vendor.tax_id', $event)" />
+    </div>
+    <div class="stack">
+      <app-field key="buyer.name" label="Buyer" [value]="value('buyer.name')" [issues]="issuesFor('buyer.name')" [changed]="isChanged('buyer.name')" (valueChange)="store.setScalar('buyer.name', $event)" />
+      <app-field key="buyer.address" label="Buyer address" [value]="value('buyer.address')" [changed]="isChanged('buyer.address')" (valueChange)="store.setScalar('buyer.address', $event)" />
+      <app-field key="buyer.tax_id" label="Buyer tax ID" [value]="value('buyer.tax_id')" [changed]="isChanged('buyer.tax_id')" (valueChange)="store.setScalar('buyer.tax_id', $event)" />
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <h3>Invoice</h3>
+  <div class="four">
+    <app-field key="invoice_number" label="Invoice number" [value]="value('invoice_number')" [issues]="issuesFor('invoice_number')" [changed]="isChanged('invoice_number')" (valueChange)="store.setScalar('invoice_number', $event)" />
+    <app-field key="issue_date" label="Issue date" kind="date" [value]="value('issue_date')" [issues]="issuesFor('issue_date')" [changed]="isChanged('issue_date')" (valueChange)="store.setScalar('issue_date', $event)" />
+    <app-field key="due_date" label="Due date" kind="date" [value]="value('due_date')" [issues]="issuesFor('due_date')" [changed]="isChanged('due_date')" (valueChange)="store.setScalar('due_date', $event)" />
+    <app-field key="currency" label="Currency" [value]="value('currency')" [issues]="issuesFor('currency')" [changed]="isChanged('currency')" (valueChange)="store.setScalar('currency', $event)" />
+  </div>
+</section>
+
+<section class="block">
+  <h3>Line items</h3>
+  <div class="lines" role="table" aria-label="Line items">
+    <div class="line head" role="row">
+      <span role="columnheader">Description</span>
+      <span role="columnheader">Qty</span>
+      <span role="columnheader">Unit price</span>
+      <span role="columnheader">Line total</span>
+      <span></span>
+    </div>
+    @for (i of indexes(); track i) {
+      <div class="line" role="row">
+        <app-field [key]="lineKey(i, 'description')" [label]="'Line ' + (i + 1) + ' description'" compact [value]="lineValue(i, 'description')" [changed]="isChanged(lineKey(i, 'description'))" (valueChange)="store.setLine(i, 'description', $event)" />
+        <app-field [key]="lineKey(i, 'quantity')" [label]="'Line ' + (i + 1) + ' quantity'" kind="numeric" compact [value]="lineValue(i, 'quantity')" [issues]="issuesFor(lineKey(i, 'quantity'))" [changed]="isChanged(lineKey(i, 'quantity'))" (valueChange)="store.setLine(i, 'quantity', $event)" />
+        <app-field [key]="lineKey(i, 'unit_price')" [label]="'Line ' + (i + 1) + ' unit price'" kind="numeric" compact [value]="lineValue(i, 'unit_price')" [issues]="issuesFor(lineKey(i, 'unit_price'))" [changed]="isChanged(lineKey(i, 'unit_price'))" (valueChange)="store.setLine(i, 'unit_price', $event)" />
+        <app-field [key]="lineKey(i, 'line_total')" [label]="'Line ' + (i + 1) + ' total'" kind="numeric" compact [value]="lineValue(i, 'line_total')" [issues]="issuesFor(lineKey(i, 'line_total'))" [changed]="isChanged(lineKey(i, 'line_total'))" (valueChange)="store.setLine(i, 'line_total', $event)" />
+        <button type="button" class="btn small remove" (click)="store.removeLine(i)" [attr.aria-label]="'Remove line ' + (i + 1)">Remove</button>
+      </div>
+    }
+  </div>
+  <button type="button" class="btn small" (click)="store.addLine()">Add a line</button>
+</section>
+
+<section class="block">
+  <h3>Totals</h3>
+  <div class="four">
+    <app-field key="subtotal" label="Subtotal" kind="numeric" [value]="value('subtotal')" [issues]="issuesFor('subtotal')" [changed]="isChanged('subtotal')" (valueChange)="store.setScalar('subtotal', $event)" />
+    <app-field key="discount_total" label="Discount" kind="numeric" [value]="value('discount_total')" [issues]="issuesFor('discount_total')" [changed]="isChanged('discount_total')" (valueChange)="store.setScalar('discount_total', $event)" />
+    <app-field key="tax_total" label="Tax" kind="numeric" [value]="value('tax_total')" [issues]="issuesFor('tax_total')" [changed]="isChanged('tax_total')" (valueChange)="store.setScalar('tax_total', $event)" />
+    <app-field key="total" label="Total" kind="numeric" [value]="value('total')" [issues]="issuesFor('total')" [changed]="isChanged('total')" (valueChange)="store.setScalar('total', $event)" />
+  </div>
+</section>
+
+<footer class="actions">
+  <button type="button" class="btn primary" (click)="exportJson()" [disabled]="!canExport()">Export JSON</button>
+  <button type="button" class="btn" (click)="exportCsv()" [disabled]="!canExport()">Export line items (CSV)</button>
+  @if (store.edited()) {
+    <button type="button" class="btn" (click)="store.resetEdits()">Undo my edits</button>
+  }
+  <button type="button" class="btn" (click)="newDocument.emit()">Check another document</button>
+  @if (!canExport()) {
+    <span class="muted">Fix the highlighted fields to export.</span>
+  }
+</footer>
+
+@if (store.result()?.usage; as usage) {
+  <p class="muted usage">
+    {{ recorded() ? 'Recorded model run' : 'This run' }}: {{ usage.total_tokens | number }} tokens, {{ usage.latency_s }} s,
+    {{ usage.model }}
+  </p>
+}

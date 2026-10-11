@@ -1,0 +1,34 @@
+:host { display: grid; gap: 16px; }
+
+.demo { background: var(--accent-soft); border-color: var(--accent); font-size: 14px; line-height: 1.5; }
+
+.drop {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  padding: 36px 20px;
+  border-style: dashed;
+  border-width: 2px;
+  text-align: center;
+  transition: border-color 0.15s, background 0.15s;
+}
+.drop.dragging { border-color: var(--accent); background: var(--accent-soft); }
+.headline { margin: 0; font-size: 20px; font-weight: 600; }
+.drop p { margin: 0; }
+.limits { max-width: 52ch; margin-top: 10px; }
+.error { color: var(--bad); font-size: 14px; }
+
+h2 { margin: 8px 0 0; font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+
+.samples {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+}
+.sample { display: grid; gap: 8px; align-content: start; }
+.sample h3 { margin: 0; font-size: 16px; }
+.sample p { margin: 0; line-height: 1.45; }
+.sample .btn { justify-self: start; }

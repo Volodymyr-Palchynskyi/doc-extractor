@@ -1,0 +1,46 @@
+<header class="top">
+  <div>
+    <h1>Document Extraction Copilot</h1>
+    <p class="muted">Reads an invoice, checks the arithmetic in code, and shows what needs a human.</p>
+  </div>
+  @if (info(); as i) {
+    <span class="mode" [class.demo]="i.mode === 'demo'">{{ i.mode === 'demo' ? 'Demo mode' : 'Live model' }}</span>
+  }
+</header>
+
+<main>
+  @if (error(); as message) {
+    <div class="banner" role="alert">{{ message }}</div>
+  }
+
+  @switch (stage()) {
+    @case ('idle') {
+      <app-upload-panel
+        [info]="info()"
+        [samples]="samples()"
+        (fileChosen)="process($event, $event.name)"
+        (sampleChosen)="useSample($event)"
+      />
+    }
+    @case ('processing') {
+      <div class="panel working" role="status" aria-live="polite">
+        <span class="spinner" aria-hidden="true"></span>
+        <div>
+          <strong>Reading {{ fileName() }}...</strong>
+          <p class="muted">A live model call usually takes 10 to 30 seconds.</p>
+        </div>
+        <button type="button" class="btn" (click)="cancel()">Cancel</button>
+      </div>
+    }
+    @case ('review') {
+      @if (store.result(); as result) {
+        <div class="review">
+          @if (result.document_id && result.pages) {
+            <app-page-viewer class="viewer" [documentId]="result.document_id" [pages]="result.pages" />
+          }
+          <app-review-panel [recorded]="info()?.mode === 'demo'" (newDocument)="newDocument()" />
+        </div>
+      }
+    }
+  }
+</main>

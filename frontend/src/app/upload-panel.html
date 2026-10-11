@@ -1,0 +1,50 @@
+@if (info()?.mode === 'demo') {
+  <div class="demo panel" role="note">
+    <strong>Demo mode.</strong>
+    No API key is configured, so only the sample documents below are accepted. Their results are real model
+    output that was recorded in advance, mistakes included.
+  </div>
+}
+
+<div
+  class="drop panel"
+  [class.dragging]="dragging()"
+  (dragover)="onDragOver($event)"
+  (dragleave)="dragging.set(false)"
+  (drop)="onDrop($event)"
+>
+  <p class="headline">Drop an invoice PDF here</p>
+  <p class="muted">or</p>
+  <button type="button" class="btn primary" (click)="picker.click()">Choose a PDF</button>
+  <input
+    #picker
+    class="visually-hidden"
+    type="file"
+    accept="application/pdf,.pdf"
+    tabindex="-1"
+    aria-label="Choose an invoice PDF"
+    (change)="onFiles($any($event.target).files); picker.value = ''"
+  />
+  @if (info(); as i) {
+    <p class="muted limits">
+      Up to {{ i.max_upload_mb }} MB and {{ i.max_pages }} pages. The document stays in server memory for
+      {{ ttlMinutes() }} minutes and can be deleted at any time.
+    </p>
+  }
+  @if (localError(); as error) {
+    <p class="error" role="alert">{{ error }}</p>
+  }
+</div>
+
+@if (samples().length) {
+  <h2>Or try a sample</h2>
+  <ul class="samples">
+    @for (sample of samples(); track sample.id) {
+      <li class="panel sample">
+        <h3>{{ sample.title }}</h3>
+        <p class="muted">{{ sample.description }}</p>
+        <button type="button" class="btn" (click)="sampleChosen.emit(sample)">Use this sample</button>
+      </li>
+    }
+  </ul>
+}
