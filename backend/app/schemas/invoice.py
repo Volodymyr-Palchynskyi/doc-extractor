@@ -34,6 +34,8 @@ class InvoiceExtraction(BaseModel):
     issue_date: date = Field(description="Invoice date, normalised to ISO 8601 (YYYY-MM-DD)")
     due_date: date | None = Field(default=None, description="Payment due date in ISO 8601, null if not printed")
     currency: str = Field(description="ISO 4217 code, e.g. USD, EUR, GBP (derive it from symbols if needed)")
+    # No max_length here: it becomes `maxItems` in the response schema, which the Gemini API rejects (HTTP 400).
+    # The size limit for edited data is enforced by the validations endpoint instead.
     line_items: list[LineItem] = Field(description="Every line of the invoice, across all pages, in order")
     subtotal: float = Field(description="Sum of lines before discount and tax, as printed")
     discount_total: float = Field(default=0.0, description="Total discount as a positive number, 0 if none")
@@ -60,3 +62,14 @@ class ExtractionResult(BaseModel):
     issues: list[Issue]
     needs_review: bool = Field(description="True when at least one error-level issue was found")
     usage: Usage | None = None
+    document_id: str | None = Field(
+        default=None, description="Handle for fetching page images; the document expires and can be deleted"
+    )
+    pages: int | None = Field(default=None, description="Number of pages of the uploaded PDF")
+
+
+class ValidationResult(BaseModel):
+    """Answer to re-checking values a human has edited. No model is involved."""
+
+    issues: list[Issue]
+    needs_review: bool

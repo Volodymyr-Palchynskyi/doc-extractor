@@ -6,6 +6,8 @@ from fastapi import Depends, HTTPException, Request, status
 
 from app.core.config import settings
 from app.core.limits import ConcurrencyGate, SlidingWindowLimiter
+from app.services.demo_extractor import DemoExtractor
+from app.services.document_store import DocumentStore
 from app.services.extraction_service import GeminiExtractor, PdfExtractor
 
 logger = logging.getLogger(__name__)
@@ -13,7 +15,7 @@ logger = logging.getLogger(__name__)
 
 @lru_cache()
 def _build_extractor() -> PdfExtractor:
-    return GeminiExtractor()
+    return DemoExtractor() if settings.extractor_mode == "demo" else GeminiExtractor()
 
 
 def get_extractor() -> PdfExtractor:
@@ -26,6 +28,18 @@ def get_extractor() -> PdfExtractor:
 # ------------------------------------------------------------------ abuse protection
 _extraction_limiter = SlidingWindowLimiter(settings.RATE_LIMIT_EXTRACTIONS, settings.RATE_LIMIT_WINDOW_S)
 _extraction_gate = ConcurrencyGate(settings.MAX_CONCURRENT_EXTRACTIONS)
+_page_limiter = SlidingWindowLimiter(settings.RATE_LIMIT_PAGES, settings.RATE_LIMIT_WINDOW_S)
+_validation_limiter = SlidingWindowLimiter(settings.RATE_LIMIT_VALIDATIONS, settings.RATE_LIMIT_WINDOW_S)
+
+_document_store = DocumentStore(
+    ttl_s=settings.DOC_TTL_S,
+    max_docs=settings.MAX_STORED_DOCS,
+    max_bytes=settings.MAX_STORED_MB * 1024 * 1024,
+)
+
+
+def get_document_store() -> DocumentStore:
+    return _document_store
 
 
 def _client_key(request: Request) -> str:
@@ -33,8 +47,8 @@ def _client_key(request: Request) -> str:
     return request.client.host if request.client else "unknown"
 
 
-def limit_extractions(request: Request) -> None:
-    retry_after = _extraction_limiter.check(_client_key(request))
+def _enforce(limiter: SlidingWindowLimiter, request: Request) -> None:
+    retry_after = limiter.check(_client_key(request))
     if retry_after is not None:
         seconds = max(1, int(retry_after) + 1)
         raise HTTPException(
@@ -42,6 +56,18 @@ def limit_extractions(request: Request) -> None:
             f"Rate limit reached. Try again in {seconds} s.",
             headers={"Retry-After": str(seconds)},
         )
+
+
+def limit_extractions(request: Request) -> None:
+    _enforce(_extraction_limiter, request)
+
+
+def limit_pages(request: Request) -> None:
+    _enforce(_page_limiter, request)
+
+
+def limit_validations(request: Request) -> None:
+    _enforce(_validation_limiter, request)
 
 
 def acquire_extraction_slot(_: None = Depends(limit_extractions)) -> Iterator[None]:

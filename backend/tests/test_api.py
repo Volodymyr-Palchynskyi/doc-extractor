@@ -95,7 +95,8 @@ def test_extractor_failure_hides_details_and_frees_the_slot(client):
     assert deps._extraction_gate.active == 0
 
 
-def test_missing_api_key_gives_503_not_a_bare_500(monkeypatch):
+def test_missing_api_key_gives_503_when_gemini_is_requested_explicitly(monkeypatch):
+    monkeypatch.setattr(settings, "EXTRACTOR", "gemini")
     monkeypatch.setattr(settings, "GEMINI_API_KEY", "")
     deps._build_extractor.cache_clear()
     monkeypatch.setattr(deps, "_extraction_limiter", SlidingWindowLimiter(5, 600))

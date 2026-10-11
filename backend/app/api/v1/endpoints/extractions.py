@@ -4,9 +4,11 @@ import logging
 import pypdfium2 as pdfium
 from fastapi import APIRouter, Depends, HTTPException, UploadFile, status
 
-from app.api.deps import acquire_extraction_slot, get_extractor
+from app.api.deps import acquire_extraction_slot, get_document_store, get_extractor
 from app.core.config import settings
 from app.schemas.invoice import ExtractionResult
+from app.services.demo_extractor import NotASampleError
+from app.services.document_store import DocumentStore
 from app.services.extraction_service import PdfExtractor, extract_and_validate
 
 logger = logging.getLogger(__name__)
@@ -24,7 +26,8 @@ def _count_pages(pdf: bytes) -> int:
         raise HTTPException(status.HTTP_422_UNPROCESSABLE_CONTENT, "The file is not a readable PDF (corrupt or password-protected).") from exc
 
 
-async def read_valid_pdf(file: UploadFile) -> bytes:
+async def read_valid_pdf(file: UploadFile) -> tuple[bytes, int]:
+    """Returns the bytes and the page count of an upload that is a readable PDF within the limits."""
     limit = settings.MAX_UPLOAD_MB * 1024 * 1024
     data = await file.read(limit + 1)  # never buffer more than the limit plus one byte
     if len(data) > limit:
@@ -35,7 +38,7 @@ async def read_valid_pdf(file: UploadFile) -> bytes:
     pages = await asyncio.to_thread(_count_pages, data)
     if pages > settings.MAX_PDF_PAGES:
         raise HTTPException(status.HTTP_422_UNPROCESSABLE_CONTENT, f"The PDF has {pages} pages, the limit is {settings.MAX_PDF_PAGES}.")
-    return data
+    return data, pages
 
 
 @router.post(
@@ -43,16 +46,21 @@ async def read_valid_pdf(file: UploadFile) -> bytes:
     response_model=ExtractionResult,
     summary="Extract structured data from an invoice PDF",
     description="Returns the extracted fields, the arithmetic and consistency issues found by the validator, "
-                "and `needs_review` when a human should check the result.",
+                "and `needs_review` when a human should check the result. The PDF is kept in memory for a "
+                "short time under `document_id`, so page images can be fetched next to the fields.",
 )
 async def create_extraction(
     file: UploadFile,
     extractor: PdfExtractor = Depends(get_extractor),
+    store: DocumentStore = Depends(get_document_store),
     _slot: None = Depends(acquire_extraction_slot),
 ) -> ExtractionResult:
-    pdf = await read_valid_pdf(file)
+    pdf, pages = await read_valid_pdf(file)
     try:
-        return await extract_and_validate(extractor, pdf)
+        result = await extract_and_validate(extractor, pdf)
+    except NotASampleError as exc:  # demo mode: a clear message instead of a model call
+        raise HTTPException(status.HTTP_422_UNPROCESSABLE_CONTENT, str(exc)) from exc
     except Exception:
         logger.exception("Extraction failed")
         raise HTTPException(status.HTTP_500_INTERNAL_SERVER_ERROR, "Extraction failed. Please try again.")
+    return result.model_copy(update={"document_id": store.add(pdf, pages), "pages": pages})
