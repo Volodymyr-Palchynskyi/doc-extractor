@@ -1,0 +1,12 @@
+services:
+  backend:
+    build: ./backend
+    env_file:
+      # Optional so CI and fresh clones can build and boot; without a key the API answers 503.
+      - path: ./backend/.env
+        required: false
+    # Published on loopback only. Put a reverse proxy in front before exposing it: the rate limiter
+    # trusts X-Forwarded-For, which is only safe when nothing but the proxy can reach this port.
+    ports:
+      - "127.0.0.1:8000:8000"
+    restart: unless-stopped
