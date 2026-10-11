@@ -21,3 +21,8 @@ frontend/.angular/
 
 # Output of the CI oracle step
 backend/evals/results/*ci-oracle*
+
+# Playwright is installed inside the container by e2e/run.sh, but guard against a manual npm install here
+e2e/node_modules/
+e2e/package.json
+e2e/package-lock.json
