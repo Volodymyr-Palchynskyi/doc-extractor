@@ -1,0 +1,990 @@
+{
+  "meta": {
+    "split": "dev",
+    "extractor": "gemini",
+    "model": "gemini-3.7-flash"
+  },
+  "generated": "2026-10-11 15:10 UTC",
+  "results": [
+    {
+      "doc_id": "dev-easy-00",
+      "difficulty": "easy",
+      "layout": "modern",
+      "locale": "en_US",
+      "injected_error": null,
+      "score": {
+        "scalars": {
+          "invoice_number": true,
+          "issue_date": true,
+          "due_date": true,
+          "currency": true,
+          "vendor_name": true,
+          "buyer_name": true,
+          "vendor_tax_id": true,
+          "buyer_tax_id": false,
+          "subtotal": true,
+          "discount_total": true,
+          "tax_total": true,
+          "total": true
+        },
+        "items": {
+          "truth_items": 5,
+          "extracted_items": 5,
+          "matched": 5,
+          "correct": 5,
+          "spurious": 0
+        },
+        "exact": false,
+        "flagged_extraction": false,
+        "flagged_truth": false
+      },
+      "usage": "model='gemini-3.7-flash' input_tokens=546 output_tokens=341 thinking_tokens=314 total_tokens=1201 latency_s=7.3 estimated_cost_usd=None",
+      "error": null
+    },
+    {
+      "doc_id": "dev-easy-01",
+      "difficulty": "easy",
+      "layout": "classic",
+      "locale": "en_GB",
+      "injected_error": null,
+      "score": {
+        "scalars": {
+          "invoice_number": true,
+          "issue_date": true,
+          "due_date": true,
+          "currency": true,
+          "vendor_name": true,
+          "buyer_name": true,
+          "vendor_tax_id": true,
+          "buyer_tax_id": true,
+          "subtotal": true,
+          "discount_total": true,
+          "tax_total": true,
+          "total": true
+        },
+        "items": {
+          "truth_items": 3,
+          "extracted_items": 3,
+          "matched": 3,
+          "correct": 3,
+          "spurious": 0
+        },
+        "exact": true,
+        "flagged_extraction": false,
+        "flagged_truth": false
+      },
+      "usage": "model='gemini-3.7-flash' input_tokens=546 output_tokens=272 thinking_tokens=385 total_tokens=1203 latency_s=7.3 estimated_cost_usd=None",
+      "error": null
+    },
+    {
+      "doc_id": "dev-easy-02",
+      "difficulty": "easy",
+      "layout": "modern",
+      "locale": "en_US",
+      "injected_error": null,
+      "score": {
+        "scalars": {
+          "invoice_number": true,
+          "issue_date": true,
+          "due_date": true,
+          "currency": true,
+          "vendor_name": true,
+          "buyer_name": true,
+          "vendor_tax_id": true,
+          "buyer_tax_id": true,
+          "subtotal": true,
+          "discount_total": true,
+          "tax_total": true,
+          "total": true
+        },
+        "items": {
+          "truth_items": 1,
+          "extracted_items": 1,
+          "matched": 1,
+          "correct": 1,
+          "spurious": 0
+        },
+        "exact": true,
+        "flagged_extraction": false,
+        "flagged_truth": false
+      },
+      "usage": "model='gemini-3.7-flash' input_tokens=546 output_tokens=248 thinking_tokens=458 total_tokens=1252 latency_s=8.4 estimated_cost_usd=None",
+      "error": null
+    },
+    {
+      "doc_id": "dev-easy-03",
+      "difficulty": "easy",
+      "layout": "modern",
+      "locale": "en_GB",
+      "injected_error": null,
+      "score": {
+        "scalars": {
+          "invoice_number": true,
+          "issue_date": true,
+          "due_date": true,
+          "currency": true,
+          "vendor_name": true,
+          "buyer_name": true,
+          "vendor_tax_id": true,
+          "buyer_tax_id": true,
+          "subtotal": true,
+          "discount_total": true,
+          "tax_total": true,
+          "total": true
+        },
+        "items": {
+          "truth_items": 5,
+          "extracted_items": 5,
+          "matched": 5,
+          "correct": 5,
+          "spurious": 0
+        },
+        "exact": true,
+        "flagged_extraction": false,
+        "flagged_truth": false
+      },
+      "usage": "model='gemini-3.7-flash' input_tokens=546 output_tokens=352 thinking_tokens=440 total_tokens=1338 latency_s=6.2 estimated_cost_usd=None",
+      "error": null
+    },
+    {
+      "doc_id": "dev-easy-04",
+      "difficulty": "easy",
+      "layout": "modern",
+      "locale": "en_US",
+      "injected_error": null,
+      "score": {
+        "scalars": {
+          "invoice_number": true,
+          "issue_date": true,
+          "due_date": true,
+          "currency": true,
+          "vendor_name": true,
+          "buyer_name": true,
+          "vendor_tax_id": false,
+          "buyer_tax_id": false,
+          "subtotal": true,
+          "discount_total": true,
+          "tax_total": true,
+          "total": true
+        },
+        "items": {
+          "truth_items": 4,
+          "extracted_items": 4,
+          "matched": 4,
+          "correct": 4,
+          "spurious": 0
+        },
+        "exact": false,
+        "flagged_extraction": false,
+        "flagged_truth": false
+      },
+      "usage": "model='gemini-3.7-flash' input_tokens=546 output_tokens=380 thinking_tokens=349 total_tokens=1275 latency_s=5.9 estimated_cost_usd=None",
+      "error": null
+    },
+    {
+      "doc_id": "dev-easy-05",
+      "difficulty": "easy",
+      "layout": "modern",
+      "locale": "en_US",
+      "injected_error": null,
+      "score": {
+        "scalars": {
+          "invoice_number": true,
+          "issue_date": true,
+          "due_date": true,
+          "currency": true,
+          "vendor_name": true,
+          "buyer_name": true,
+          "vendor_tax_id": false,
+          "buyer_tax_id": false,
+          "subtotal": true,
+          "discount_total": true,
+          "tax_total": true,
+          "total": true
+        },
+        "items": {
+          "truth_items": 3,
+          "extracted_items": 3,
+          "matched": 3,
+          "correct": 3,
+          "spurious": 0
+        },
+        "exact": false,
+        "flagged_extraction": false,
+        "flagged_truth": false
+      },
+      "usage": "model='gemini-3.7-flash' input_tokens=546 output_tokens=329 thinking_tokens=591 total_tokens=1466 latency_s=7.3 estimated_cost_usd=None",
+      "error": null
+    },
+    {
+      "doc_id": "dev-easy-06",
+      "difficulty": "easy",
+      "layout": "classic",
+      "locale": "en_GB",
+      "injected_error": null,
+      "score": {
+        "scalars": {
+          "invoice_number": true,
+          "issue_date": true,
+          "due_date": true,
+          "currency": true,
+          "vendor_name": true,
+          "buyer_name": true,
+          "vendor_tax_id": true,
+          "buyer_tax_id": true,
+          "subtotal": true,
+          "discount_total": true,
+          "tax_total": true,
+          "total": true
+        },
+        "items": {
+          "truth_items": 3,
+          "extracted_items": 3,
+          "matched": 3,
+          "correct": 3,
+          "spurious": 0
+        },
+        "exact": true,
+        "flagged_extraction": false,
+        "flagged_truth": false
+      },
+      "usage": "model='gemini-3.7-flash' input_tokens=546 output_tokens=262 thinking_tokens=370 total_tokens=1178 latency_s=5.8 estimated_cost_usd=None",
+      "error": null
+    },
+    {
+      "doc_id": "dev-easy-07",
+      "difficulty": "easy",
+      "layout": "classic",
+      "locale": "en_GB",
+      "injected_error": null,
+      "score": {
+        "scalars": {
+          "invoice_number": true,
+          "issue_date": true,
+          "due_date": true,
+          "currency": true,
+          "vendor_name": true,
+          "buyer_name": true,
+          "vendor_tax_id": true,
+          "buyer_tax_id": true,
+          "subtotal": true,
+          "discount_total": true,
+          "tax_total": true,
+          "total": true
+        },
+        "items": {
+          "truth_items": 4,
+          "extracted_items": 4,
+          "matched": 4,
+          "correct": 4,
+          "spurious": 0
+        },
+        "exact": true,
+        "flagged_extraction": false,
+        "flagged_truth": false
+      },
+      "usage": "model='gemini-3.7-flash' input_tokens=546 output_tokens=300 thinking_tokens=543 total_tokens=1389 latency_s=7.1 estimated_cost_usd=None",
+      "error": null
+    },
+    {
+      "doc_id": "dev-medium-00",
+      "difficulty": "medium",
+      "layout": "minimal",
+      "locale": "en_GB",
+      "injected_error": "line_total_off",
+      "score": {
+        "scalars": {
+          "invoice_number": true,
+          "issue_date": true,
+          "due_date": true,
+          "currency": true,
+          "vendor_name": true,
+          "buyer_name": true,
+          "vendor_tax_id": true,
+          "buyer_tax_id": true,
+          "subtotal": true,
+          "discount_total": true,
+          "tax_total": true,
+          "total": true
+        },
+        "items": {
+          "truth_items": 7,
+          "extracted_items": 7,
+          "matched": 7,
+          "correct": 7,
+          "spurious": 0
+        },
+        "exact": true,
+        "flagged_extraction": true,
+        "flagged_truth": true
+      },
+      "usage": "model='gemini-3.7-flash' input_tokens=546 output_tokens=407 thinking_tokens=604 total_tokens=1557 latency_s=8.9 estimated_cost_usd=None",
+      "error": null
+    },
+    {
+      "doc_id": "dev-medium-01",
+      "difficulty": "medium",
+      "layout": "minimal",
+      "locale": "en_GB",
+      "injected_error": null,
+      "score": {
+        "scalars": {
+          "invoice_number": true,
+          "issue_date": true,
+          "due_date": true,
+          "currency": true,
+          "vendor_name": true,
+          "buyer_name": true,
+          "vendor_tax_id": true,
+          "buyer_tax_id": true,
+          "subtotal": true,
+          "discount_total": true,
+          "tax_total": true,
+          "total": true
+        },
+        "items": {
+          "truth_items": 5,
+          "extracted_items": 5,
+          "matched": 5,
+          "correct": 5,
+          "spurious": 0
+        },
+        "exact": true,
+        "flagged_extraction": false,
+        "flagged_truth": false
+      },
+      "usage": "model='gemini-3.7-flash' input_tokens=546 output_tokens=340 thinking_tokens=509 total_tokens=1395 latency_s=6.9 estimated_cost_usd=None",
+      "error": null
+    },
+    {
+      "doc_id": "dev-medium-02",
+      "difficulty": "medium",
+      "layout": "classic",
+      "locale": "en_US",
+      "injected_error": null,
+      "score": {
+        "scalars": {
+          "invoice_number": true,
+          "issue_date": true,
+          "due_date": true,
+          "currency": true,
+          "vendor_name": true,
+          "buyer_name": true,
+          "vendor_tax_id": true,
+          "buyer_tax_id": true,
+          "subtotal": true,
+          "discount_total": true,
+          "tax_total": true,
+          "total": true
+        },
+        "items": {
+          "truth_items": 11,
+          "extracted_items": 11,
+          "matched": 11,
+          "correct": 11,
+          "spurious": 0
+        },
+        "exact": true,
+        "flagged_extraction": false,
+        "flagged_truth": false
+      },
+      "usage": "model='gemini-3.7-flash' input_tokens=546 output_tokens=644 thinking_tokens=1309 total_tokens=2499 latency_s=14.3 estimated_cost_usd=None",
+      "error": null
+    },
+    {
+      "doc_id": "dev-medium-03",
+      "difficulty": "medium",
+      "layout": "modern",
+      "locale": "en_GB",
+      "injected_error": null,
+      "score": {
+        "scalars": {
+          "invoice_number": true,
+          "issue_date": true,
+          "due_date": true,
+          "currency": true,
+          "vendor_name": true,
+          "buyer_name": true,
+          "vendor_tax_id": true,
+          "buyer_tax_id": true,
+          "subtotal": true,
+          "discount_total": true,
+          "tax_total": true,
+          "total": true
+        },
+        "items": {
+          "truth_items": 6,
+          "extracted_items": 6,
+          "matched": 6,
+          "correct": 6,
+          "spurious": 0
+        },
+        "exact": true,
+        "flagged_extraction": false,
+        "flagged_truth": false
+      },
+      "usage": "model='gemini-3.7-flash' input_tokens=546 output_tokens=364 thinking_tokens=423 total_tokens=1333 latency_s=5.8 estimated_cost_usd=None",
+      "error": null
+    },
+    {
+      "doc_id": "dev-medium-04",
+      "difficulty": "medium",
+      "layout": "modern",
+      "locale": "fr_FR",
+      "injected_error": null,
+      "score": {
+        "scalars": {
+          "invoice_number": true,
+          "issue_date": true,
+          "due_date": true,
+          "currency": true,
+          "vendor_name": true,
+          "buyer_name": true,
+          "vendor_tax_id": true,
+          "buyer_tax_id": true,
+          "subtotal": true,
+          "discount_total": true,
+          "tax_total": true,
+          "total": true
+        },
+        "items": {
+          "truth_items": 10,
+          "extracted_items": 10,
+          "matched": 10,
+          "correct": 10,
+          "spurious": 0
+        },
+        "exact": true,
+        "flagged_extraction": false,
+        "flagged_truth": false
+      },
+      "usage": "model='gemini-3.7-flash' input_tokens=546 output_tokens=519 thinking_tokens=1167 total_tokens=2232 latency_s=12.3 estimated_cost_usd=None",
+      "error": null
+    },
+    {
+      "doc_id": "dev-medium-05",
+      "difficulty": "medium",
+      "layout": "modern",
+      "locale": "en_US",
+      "injected_error": "line_total_off",
+      "score": {
+        "scalars": {
+          "invoice_number": true,
+          "issue_date": true,
+          "due_date": true,
+          "currency": true,
+          "vendor_name": true,
+          "buyer_name": true,
+          "vendor_tax_id": true,
+          "buyer_tax_id": true,
+          "subtotal": true,
+          "discount_total": true,
+          "tax_total": true,
+          "total": true
+        },
+        "items": {
+          "truth_items": 10,
+          "extracted_items": 10,
+          "matched": 10,
+          "correct": 10,
+          "spurious": 0
+        },
+        "exact": true,
+        "flagged_extraction": true,
+        "flagged_truth": true
+      },
+      "usage": "model='gemini-3.7-flash' input_tokens=546 output_tokens=512 thinking_tokens=772 total_tokens=1830 latency_s=9.5 estimated_cost_usd=None",
+      "error": null
+    },
+    {
+      "doc_id": "dev-medium-06",
+      "difficulty": "medium",
+      "layout": "classic",
+      "locale": "en_GB",
+      "injected_error": null,
+      "score": {
+        "scalars": {
+          "invoice_number": true,
+          "issue_date": true,
+          "due_date": true,
+          "currency": true,
+          "vendor_name": true,
+          "buyer_name": true,
+          "vendor_tax_id": true,
+          "buyer_tax_id": true,
+          "subtotal": true,
+          "discount_total": true,
+          "tax_total": true,
+          "total": true
+        },
+        "items": {
+          "truth_items": 7,
+          "extracted_items": 7,
+          "matched": 7,
+          "correct": 7,
+          "spurious": 0
+        },
+        "exact": true,
+        "flagged_extraction": false,
+        "flagged_truth": false
+      },
+      "usage": "model='gemini-3.7-flash' input_tokens=546 output_tokens=498 thinking_tokens=543 total_tokens=1587 latency_s=7.4 estimated_cost_usd=None",
+      "error": null
+    },
+    {
+      "doc_id": "dev-medium-07",
+      "difficulty": "medium",
+      "layout": "modern",
+      "locale": "fr_FR",
+      "injected_error": null,
+      "score": {
+        "scalars": {
+          "invoice_number": true,
+          "issue_date": true,
+          "due_date": true,
+          "currency": true,
+          "vendor_name": true,
+          "buyer_name": true,
+          "vendor_tax_id": true,
+          "buyer_tax_id": true,
+          "subtotal": true,
+          "discount_total": true,
+          "tax_total": true,
+          "total": true
+        },
+        "items": {
+          "truth_items": 12,
+          "extracted_items": 12,
+          "matched": 12,
+          "correct": 12,
+          "spurious": 0
+        },
+        "exact": true,
+        "flagged_extraction": false,
+        "flagged_truth": false
+      },
+      "usage": "model='gemini-3.7-flash' input_tokens=546 output_tokens=915 thinking_tokens=899 total_tokens=2360 latency_s=11.7 estimated_cost_usd=None",
+      "error": null
+    },
+    {
+      "doc_id": "dev-medium-08",
+      "difficulty": "medium",
+      "layout": "classic",
+      "locale": "de_DE",
+      "injected_error": null,
+      "score": {
+        "scalars": {
+          "invoice_number": true,
+          "issue_date": true,
+          "due_date": true,
+          "currency": true,
+          "vendor_name": true,
+          "buyer_name": true,
+          "vendor_tax_id": true,
+          "buyer_tax_id": true,
+          "subtotal": true,
+          "discount_total": true,
+          "tax_total": true,
+          "total": true
+        },
+        "items": {
+          "truth_items": 6,
+          "extracted_items": 6,
+          "matched": 6,
+          "correct": 6,
+          "spurious": 0
+        },
+        "exact": true,
+        "flagged_extraction": false,
+        "flagged_truth": false
+      },
+      "usage": "model='gemini-3.7-flash' input_tokens=546 output_tokens=385 thinking_tokens=528 total_tokens=1459 latency_s=7.5 estimated_cost_usd=None",
+      "error": null
+    },
+    {
+      "doc_id": "dev-medium-09",
+      "difficulty": "medium",
+      "layout": "minimal",
+      "locale": "de_DE",
+      "injected_error": null,
+      "score": {
+        "scalars": {
+          "invoice_number": true,
+          "issue_date": true,
+          "due_date": true,
+          "currency": true,
+          "vendor_name": true,
+          "buyer_name": true,
+          "vendor_tax_id": true,
+          "buyer_tax_id": true,
+          "subtotal": true,
+          "discount_total": true,
+          "tax_total": true,
+          "total": true
+        },
+        "items": {
+          "truth_items": 5,
+          "extracted_items": 5,
+          "matched": 5,
+          "correct": 5,
+          "spurious": 0
+        },
+        "exact": true,
+        "flagged_extraction": false,
+        "flagged_truth": false
+      },
+      "usage": "model='gemini-3.7-flash' input_tokens=546 output_tokens=369 thinking_tokens=0 total_tokens=915 latency_s=6.2 estimated_cost_usd=None",
+      "error": null
+    },
+    {
+      "doc_id": "dev-hard-00",
+      "difficulty": "hard",
+      "layout": "modern",
+      "locale": "fr_FR",
+      "injected_error": null,
+      "score": {
+        "scalars": {
+          "invoice_number": true,
+          "issue_date": true,
+          "due_date": true,
+          "currency": true,
+          "vendor_name": true,
+          "buyer_name": true,
+          "vendor_tax_id": true,
+          "buyer_tax_id": true,
+          "subtotal": true,
+          "discount_total": true,
+          "tax_total": true,
+          "total": true
+        },
+        "items": {
+          "truth_items": 29,
+          "extracted_items": 29,
+          "matched": 29,
+          "correct": 29,
+          "spurious": 0
+        },
+        "exact": true,
+        "flagged_extraction": false,
+        "flagged_truth": false
+      },
+      "usage": "model='gemini-3.7-flash' input_tokens=1078 output_tokens=1577 thinking_tokens=0 total_tokens=2655 latency_s=11.1 estimated_cost_usd=None",
+      "error": null
+    },
+    {
+      "doc_id": "dev-hard-01",
+      "difficulty": "hard",
+      "layout": "classic",
+      "locale": "de_DE",
+      "injected_error": null,
+      "score": {
+        "scalars": {
+          "invoice_number": true,
+          "issue_date": true,
+          "due_date": true,
+          "currency": true,
+          "vendor_name": true,
+          "buyer_name": true,
+          "vendor_tax_id": true,
+          "buyer_tax_id": true,
+          "subtotal": true,
+          "discount_total": true,
+          "tax_total": true,
+          "total": true
+        },
+        "items": {
+          "truth_items": 31,
+          "extracted_items": 31,
+          "matched": 31,
+          "correct": 31,
+          "spurious": 0
+        },
+        "exact": true,
+        "flagged_extraction": false,
+        "flagged_truth": false
+      },
+      "usage": "model='gemini-3.7-flash' input_tokens=1078 output_tokens=1650 thinking_tokens=1362 total_tokens=4090 latency_s=17.2 estimated_cost_usd=None",
+      "error": null
+    },
+    {
+      "doc_id": "dev-hard-02",
+      "difficulty": "hard",
+      "layout": "classic",
+      "locale": "en_US",
+      "injected_error": null,
+      "score": {
+        "scalars": {
+          "invoice_number": true,
+          "issue_date": true,
+          "due_date": true,
+          "currency": true,
+          "vendor_name": true,
+          "buyer_name": true,
+          "vendor_tax_id": false,
+          "buyer_tax_id": false,
+          "subtotal": true,
+          "discount_total": true,
+          "tax_total": true,
+          "total": true
+        },
+        "items": {
+          "truth_items": 17,
+          "extracted_items": 17,
+          "matched": 17,
+          "correct": 17,
+          "spurious": 0
+        },
+        "exact": false,
+        "flagged_extraction": false,
+        "flagged_truth": false
+      },
+      "usage": "model='gemini-3.7-flash' input_tokens=546 output_tokens=764 thinking_tokens=1065 total_tokens=2375 latency_s=13.4 estimated_cost_usd=None",
+      "error": null
+    },
+    {
+      "doc_id": "dev-hard-03",
+      "difficulty": "hard",
+      "layout": "minimal",
+      "locale": "de_DE",
+      "injected_error": "total_off",
+      "score": {
+        "scalars": {
+          "invoice_number": true,
+          "issue_date": true,
+          "due_date": true,
+          "currency": true,
+          "vendor_name": true,
+          "buyer_name": true,
+          "vendor_tax_id": true,
+          "buyer_tax_id": true,
+          "subtotal": true,
+          "discount_total": true,
+          "tax_total": true,
+          "total": true
+        },
+        "items": {
+          "truth_items": 21,
+          "extracted_items": 21,
+          "matched": 21,
+          "correct": 21,
+          "spurious": 0
+        },
+        "exact": true,
+        "flagged_extraction": true,
+        "flagged_truth": true
+      },
+      "usage": "model='gemini-3.7-flash' input_tokens=546 output_tokens=1182 thinking_tokens=883 total_tokens=2611 latency_s=13.8 estimated_cost_usd=None",
+      "error": null
+    },
+    {
+      "doc_id": "dev-hard-04",
+      "difficulty": "hard",
+      "layout": "modern",
+      "locale": "fr_FR",
+      "injected_error": null,
+      "score": {
+        "scalars": {
+          "invoice_number": true,
+          "issue_date": true,
+          "due_date": true,
+          "currency": true,
+          "vendor_name": true,
+          "buyer_name": true,
+          "vendor_tax_id": true,
+          "buyer_tax_id": true,
+          "subtotal": true,
+          "discount_total": true,
+          "tax_total": true,
+          "total": true
+        },
+        "items": {
+          "truth_items": 18,
+          "extracted_items": 18,
+          "matched": 18,
+          "correct": 18,
+          "spurious": 0
+        },
+        "exact": true,
+        "flagged_extraction": false,
+        "flagged_truth": false
+      },
+      "usage": "model='gemini-3.7-flash' input_tokens=546 output_tokens=809 thinking_tokens=881 total_tokens=2236 latency_s=11.6 estimated_cost_usd=None",
+      "error": null
+    },
+    {
+      "doc_id": "dev-hard-05",
+      "difficulty": "hard",
+      "layout": "minimal",
+      "locale": "en_GB",
+      "injected_error": "line_total_off",
+      "score": {
+        "scalars": {
+          "invoice_number": true,
+          "issue_date": true,
+          "due_date": true,
+          "currency": true,
+          "vendor_name": true,
+          "buyer_name": true,
+          "vendor_tax_id": true,
+          "buyer_tax_id": true,
+          "subtotal": true,
+          "discount_total": true,
+          "tax_total": true,
+          "total": true
+        },
+        "items": {
+          "truth_items": 22,
+          "extracted_items": 22,
+          "matched": 22,
+          "correct": 22,
+          "spurious": 0
+        },
+        "exact": true,
+        "flagged_extraction": true,
+        "flagged_truth": true
+      },
+      "usage": "model='gemini-3.7-flash' input_tokens=546 output_tokens=957 thinking_tokens=1067 total_tokens=2570 latency_s=12.5 estimated_cost_usd=None",
+      "error": null
+    },
+    {
+      "doc_id": "dev-hard-06",
+      "difficulty": "hard",
+      "layout": "classic",
+      "locale": "en_US",
+      "injected_error": null,
+      "score": {
+        "scalars": {
+          "invoice_number": true,
+          "issue_date": true,
+          "due_date": true,
+          "currency": true,
+          "vendor_name": true,
+          "buyer_name": true,
+          "vendor_tax_id": true,
+          "buyer_tax_id": true,
+          "subtotal": true,
+          "discount_total": true,
+          "tax_total": true,
+          "total": true
+        },
+        "items": {
+          "truth_items": 26,
+          "extracted_items": 26,
+          "matched": 26,
+          "correct": 26,
+          "spurious": 0
+        },
+        "exact": true,
+        "flagged_extraction": false,
+        "flagged_truth": false
+      },
+      "usage": "model='gemini-3.7-flash' input_tokens=1078 output_tokens=1723 thinking_tokens=1578 total_tokens=4379 latency_s=17.9 estimated_cost_usd=None",
+      "error": null
+    },
+    {
+      "doc_id": "dev-hard-07",
+      "difficulty": "hard",
+      "layout": "classic",
+      "locale": "de_DE",
+      "injected_error": "total_off",
+      "score": {
+        "scalars": {
+          "invoice_number": true,
+          "issue_date": true,
+          "due_date": true,
+          "currency": true,
+          "vendor_name": true,
+          "buyer_name": true,
+          "vendor_tax_id": true,
+          "buyer_tax_id": true,
+          "subtotal": true,
+          "discount_total": true,
+          "tax_total": true,
+          "total": true
+        },
+        "items": {
+          "truth_items": 25,
+          "extracted_items": 25,
+          "matched": 25,
+          "correct": 25,
+          "spurious": 0
+        },
+        "exact": true,
+        "flagged_extraction": true,
+        "flagged_truth": true
+      },
+      "usage": "model='gemini-3.7-flash' input_tokens=1078 output_tokens=1374 thinking_tokens=0 total_tokens=2452 latency_s=10.3 estimated_cost_usd=None",
+      "error": null
+    },
+    {
+      "doc_id": "dev-hard-08",
+      "difficulty": "hard",
+      "layout": "classic",
+      "locale": "de_DE",
+      "injected_error": null,
+      "score": {
+        "scalars": {
+          "invoice_number": true,
+          "issue_date": true,
+          "due_date": true,
+          "currency": true,
+          "vendor_name": true,
+          "buyer_name": true,
+          "vendor_tax_id": true,
+          "buyer_tax_id": true,
+          "subtotal": true,
+          "discount_total": true,
+          "tax_total": true,
+          "total": true
+        },
+        "items": {
+          "truth_items": 16,
+          "extracted_items": 16,
+          "matched": 16,
+          "correct": 16,
+          "spurious": 0
+        },
+        "exact": true,
+        "flagged_extraction": false,
+        "flagged_truth": false
+      },
+      "usage": "model='gemini-3.7-flash' input_tokens=546 output_tokens=754 thinking_tokens=749 total_tokens=2049 latency_s=11.0 estimated_cost_usd=None",
+      "error": null
+    },
+    {
+      "doc_id": "dev-hard-09",
+      "difficulty": "hard",
+      "layout": "classic",
+      "locale": "fr_FR",
+      "injected_error": null,
+      "score": {
+        "scalars": {
+          "invoice_number": true,
+          "issue_date": true,
+          "due_date": true,
+          "currency": true,
+          "vendor_name": true,
+          "buyer_name": true,
+          "vendor_tax_id": true,
+          "buyer_tax_id": true,
+          "subtotal": true,
+          "discount_total": true,
+          "tax_total": true,
+          "total": true
+        },
+        "items": {
+          "truth_items": 30,
+          "extracted_items": 30,
+          "matched": 30,
+          "correct": 30,
+          "spurious": 0
+        },
+        "exact": true,
+        "flagged_extraction": false,
+        "flagged_truth": false
+      },
+      "usage": "model='gemini-3.7-flash' input_tokens=1078 output_tokens=1592 thinking_tokens=1296 total_tokens=3966 latency_s=17.0 estimated_cost_usd=None",
+      "error": null
+    }
+  ]
+}
