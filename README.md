@@ -236,3 +236,7 @@ scripts/smoke.sh    API smoke test through the nginx proxy (runs in CI against t
 e2e/                browser test (Playwright in Docker) that also produces docs/images/*.png
 docs/images/        screenshots, produced by the browser test
 ```
+
+## License
+
+[MIT](LICENSE). The license covers this repository's own code and data. Dependencies keep their own licenses.
