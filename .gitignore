@@ -1,0 +1,23 @@
+# IDEs
+.idea/
+.vscode/*
+!.vscode/settings.json
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Frontend (when added)
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/
+
+# Output of the CI oracle step
+backend/evals/results/*ci-oracle*
